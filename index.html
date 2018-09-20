@@ -15,23 +15,363 @@
 
   <h1>JavaScript Fundamentals Cheat Sheet</h1>
 
-<button class="accordion">Basics</button>
-<div class="body">Body</div>
+<div id="container">
 
-<button class="accordion"></button>
-<div class="body"></div>
+  <button class="accordion"><h3>Basics</h3></button>
+  <div class="body">
+    <pre>
+      <code class="lang-javascript">
+    //- Primitive types
 
-<button class="accordion"></button>
-<div class="body"></div>
+          let name = 'Dave'; //string
+          let age = 38; //number
+          let isApproved = false; //boolean
+          
+          //undefined
+          let likesPurple;
+          let likesColor = undefined;
+          
+          let hipster = null; //null (typeof an object)
 
-<button class="accordion"></button>
-<div class="body"></div>
+          //undefined
+          let likesPurple;
+          let likesColor = undefined;
 
-<button class="accordion"></button>
-<div class="body"></div>
+          let hipster = null; //null (typeof an object)
 
-<button class="accordion"></button>
-<div class="body"></div>
+    //- Objects
+
+          let person = {}; //Object literal syntax
+
+          let person = {
+              name: 'Dave',
+              age: 38
+          };
+
+          //access object properties through:
+
+            //1.  dot notation
+              person.name = 'Peter';
+
+            //2. bracket notation
+              person['name'] = 'Mary';
+
+          /* Brackets are handy when you don't know what the target property will be
+          until the runtime, ie, your website is displayed and the user
+          chooses to put in their 'name' */
+
+          let selection = 'name' //selection variable assigned a value on runtime
+          person[selection] = 'Mary' // name chosen as the value to the obj property
+
+
+    //- Arrays
+    
+              //Just using the brackets is an array literal
+              //Initialize by populating with data
+
+          let selectedColors = ['red', 'blue'];
+
+          //JS is a dynamic language meaning the variables can change at runtime
+          //same with arrays
+
+          //add to array
+          selectedColors[2] = 'green';
+
+          console.log(selectedColors);
+
+          //add different types to array
+
+          selectedColors[3] = 1;
+
+          //has key:value pairs (properties) that we can use - like an object - using dot notation
+          // i.e, write selectedColors. to see the properties show up in VScode
+          //i.e. to get the length
+          console.log(selectedColors.length);
+
+          //Functions
+
+          //function declaration
+          //the logic for this function should be to display a message on the console
+          function greet() {
+              //add statements to define logic in the application
+              console.log('Hello World'); //statement - terminated with semi-colon
+          }  //function declarations don't need a semi-colon
+
+          //function statement
+
+          greet(); //semi colon to indicate that this is a statement
+
+          //function inputs
+
+          function greet(name) {  //variable that has meaning inside of the function - a parameter
+              console.log('Hello ' + name);
+          }
+
+          greet('John'); // John is the argument to the greet function
+          //reusable
+          greet('Mary');
+
+          //Multiple arguments
+
+          function greet(name, lastName) {
+              console.log('Hello ' + name + ' ' + lastName);
+          }
+
+          greet('John', 'Smith');
+
+
+          function greet(name, lastName) {
+              console.log('Hello ' + name + ' ' + lastName);
+          }
+
+          greet('John'); // If you don't pass an argument, the lastName
+          // variable will be 'undefined' - variables default value. 
+
+          //Types of functions
+
+          //A set of statements that either;
+
+          //1. Performing a task
+          function greet(name) {
+              console.log('Hello ' + name);
+          }
+
+          greet('John');
+
+          //2. Calculates/returns a value
+
+          function square(number) {
+              return number * number; //return the value to whoever is calling the function
+          }
+
+          //square(2); //This function statement returns a value, so use it to initialize a variable
+          let number = square(2);
+          console.log(number);
+
+          //You don't have to declare a seperate value, you can pass the returning value
+          //to another function
+          console.log(square(2)); //log is a function of the console object, so we can pass
+          // a string like 'hello' or a call to another function 
+
+          // --------- Operators --------- //
+
+          //javascript operators
+              // Operators, Variables + expressions = algorithms
+
+              //Arithmetic
+          let x = 10;
+          let y = 3;
+
+          console.log(x + y); // x + y is an 'expression' it is something that produces a value
+          console.log(x - y);
+          console.log(x * y);
+          console.log(x / y);
+          console.log(x % y); //remainder of division
+          console.log(x ** y); //exponentiation (x to the power of y)
+
+          //Increment (++)
+          console.log(x++);
+
+          //Decrement (--)
+          console.log(--x);
+
+          //Assgnment operator
+
+          let x = 10;
+
+          x++;
+          //same as:
+          x = x + 1;
+          //but not good if you want to increment by more than one
+
+          //use
+          x = x + 5;
+          //or shorthand
+          x += 5;
+
+          //all other arithmetic operators behave the same
+
+          x = x * 3;
+          //same as
+
+          x *= 3;
+
+              //Comparison operator
+          let x = 1;
+
+          //Relational operators
+          console.log( x > 0);
+          console.log( x >= 0);
+          console.log( x < 0);
+          console.log( x >= 0);
+
+          // Equality
+          console.log( x === 0);
+          console.log( x !== 0);//not equal to
+
+              // Equality operators
+
+          //strict equality operator (Type + Value)
+          console.log(1 === 1); // True
+          console.log('1' === 1); // False
+
+          // Loose Equality 
+          console.log(1 == 1); // True
+          console.log('1' == 1); //True - JS looks at the left value converts the right value to match it, called 'type coersion
+          console.log(true == 1); // Same as above - true
+
+              // Ternary - or conditional - Operator 
+
+          //If a customer has more than 100 points,
+          // they are a 'gold' customer, otherwise, 
+          //they are a 'silver' customer.
+
+
+
+
+          let points = 90;
+          //      if condition equates to true, use the first value - after ? - else use the value after : 
+          let type = points > 100 ? 'gold' : 'silver';
+
+          console.log(type);
+
+              // Logical operators
+
+              // logical and, or, or not
+
+              //Logical AND (&&)
+              //Returns true if both operands are TRUE
+              console.log(true && true); //true
+              console.log(false && true); // False
+
+          //e.g
+
+          let highIncome = true;
+          let goodCreditScore = true;
+          let eligibleForLoan = highIncome && goodCreditScore;
+
+          console.log(eligibleForLoan); // True
+
+              //Logical OR (||)
+              //Returns TRUE if one of the operands is TRUE
+
+          let highIncome = false;
+          let goodCreditScore = false;
+          let eligibleForLoan = highIncome || goodCreditScore;
+
+          console.log('Eligible', eligibleForLoan);
+
+          //NOT (!)
+
+          let applicationRefused = !eligibleForLoan;
+          console.log('Application Refused', applicationRefused);
+
+
+          // Logical operators with non-booleans - truthy and falsey
+
+          // JS engine tries to interprete non booleans in a logical expression as 'truthy' or 'falsey'
+
+              false || true //optuts: true
+              false || 'Duck' // Outputs: "Duck"
+              false || 1 //Outputs: 1
+
+              //Falsy (false)
+              // undefined
+              // null
+              // 0
+              // false
+              // ''
+              // Nan
+
+          //If any of the obove get used in a logical expression, they will be evaluated as 'false'
+
+          // Truthy - anything that is not falsey
+
+          false || 1 || 3 //JS engine will stop at the first value that is truthy - 1 and return it and the evaluation stops. 
+          //This is called 'short-circuiting'
+
+          //An app where a user has to choose a T-shirt
+          let userColor = 'red';
+          let defaultColor = 'blue';
+          let currentColor = userColor || defaultColor; //if the user chooses a color, userColor is initialized to the currentColor
+          //or if a color isn't selected, then the userColor is undefined and the truthy value will be initialized to the variable
+          console.log(currentColor); // outputs red
+
+
+
+              //Bitwise operators
+
+              // 1 = 00000001  - 8 bits, 1 byte
+              // 2 = 00000010
+              // R = 00000011
+              console.log(1 | 2); // Bitwise OR (just one |) - It will check all the bits in both numbers at each bit
+              // and if any of the bits is 1 then the result will be one.
+              // the first 6 bits are 0, so the result will have 6 bits - 000000, the 7th and 8th bit will be 1 because
+              // both the 2 and 1 have a bit at the end. - the result is 00000011 //console log = 3
+
+              // 1 = 00000001  - 8 bits, 1 byte
+              // 2 = 00000010
+
+              console.log(1 & 2); // Bitwise AND
+              //Both of the compared bits numbers need to be 1 for 1 to be returned, otherwise the result is 0
+              // in the above example, not any of the bits are both 1 so, 0 is returned.
+
+              //Real-world scenario: Implement an access control system
+              //Read, write and execute
+              // 00000100
+              // 00000010
+              // 00000001
+
+              const readPermission = 4;
+              const writePermission = 2;
+              const executePermission = 1;
+
+              let myPermission = 0;
+
+              myPermission = myPermission | readPermission | writePermission;
+
+              let message = (myPermission & readPermission) ? 'yes' : 'no';
+
+              console.log(message);
+
+
+              // Bitwise OR you can add, and bitwise AND you can check permissions
+
+
+              //Operator precedence
+
+              let x = 2 + 3 * 4;
+              console.log(x); // Outputs 14 - multiplication has a higher precendence so that is done first
+              //use parenthesis
+
+          // *** Exercise *** // Swap the variables so they print 'blue' and 'red' to the console.
+
+          let a = 'red';
+          let b = 'blue';
+
+
+          console.log(a);
+          console.log(b);
+      </code>
+    </pre>
+  </div>
+
+  <button class="accordion"></button>
+  <div class="body"></div>
+
+  <button class="accordion"></button>
+  <div class="body"></div>
+
+  <button class="accordion"></button>
+  <div class="body"></div>
+
+  <button class="accordion"></button>
+  <div class="body"></div>
+
+  <button class="accordion"></button>
+  <div class="body"></div>
+
+</div>
 
 </body>
   

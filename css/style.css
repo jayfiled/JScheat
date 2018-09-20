@@ -1,9 +1,31 @@
 html {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
+  color: #2d2d2d;
+  background-color: #5a73cc;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25' viewBox='0 0 100 60'%3E%3Cg %3E%3Crect fill='%235a73cc' width='11' height='11'/%3E%3Crect fill='%236673cc' x='10' width='11' height='11'/%3E%3Crect fill='%237073cb' y='10' width='11' height='11'/%3E%3Crect fill='%237a73ca' x='20' width='11' height='11'/%3E%3Crect fill='%238373ca' x='10' y='10' width='11' height='11'/%3E%3Crect fill='%238b73c8' y='20' width='11' height='11'/%3E%3Crect fill='%239373c7' x='30' width='11' height='11'/%3E%3Crect fill='%239b74c6' x='20' y='10' width='11' height='11'/%3E%3Crect fill='%23a274c4' x='10' y='20' width='11' height='11'/%3E%3Crect fill='%23a974c3' y='30' width='11' height='11'/%3E%3Crect fill='%23af75c1' x='40' width='11' height='11'/%3E%3Crect fill='%23b575bf' x='30' y='10' width='11' height='11'/%3E%3Crect fill='%23bb76bd' x='20' y='20' width='11' height='11'/%3E%3Crect fill='%23c076bb' x='10' y='30' width='11' height='11'/%3E%3Crect fill='%23c677b9' y='40' width='11' height='11'/%3E%3Crect fill='%23ca78b7' x='50' width='11' height='11'/%3E%3Crect fill='%23cf79b5' x='40' y='10' width='11' height='11'/%3E%3Crect fill='%23d37bb3' x='30' y='20' width='11' height='11'/%3E%3Crect fill='%23d77cb1' x='20' y='30' width='11' height='11'/%3E%3Crect fill='%23db7eae' x='10' y='40' width='11' height='11'/%3E%3Crect fill='%23df7fac' y='50' width='11' height='11'/%3E%3Crect fill='%23e281aa' x='60' width='11' height='11'/%3E%3Crect fill='%23e583a8' x='50' y='10' width='11' height='11'/%3E%3Crect fill='%23e885a6' x='40' y='20' width='11' height='11'/%3E%3Crect fill='%23eb87a4' x='30' y='30' width='11' height='11'/%3E%3Crect fill='%23ed89a2' x='20' y='40' width='11' height='11'/%3E%3Crect fill='%23ef8ca0' x='10' y='50' width='11' height='11'/%3E%3Crect fill='%23f18e9f' x='70' width='11' height='11'/%3E%3Crect fill='%23f3919d' x='60' y='10' width='11' height='11'/%3E%3Crect fill='%23f5939b' x='50' y='20' width='11' height='11'/%3E%3Crect fill='%23f6969a' x='40' y='30' width='11' height='11'/%3E%3Crect fill='%23f79999' x='30' y='40' width='11' height='11'/%3E%3Crect fill='%23f89c98' x='20' y='50' width='11' height='11'/%3E%3Crect fill='%23f99f97' x='80' width='11' height='11'/%3E%3Crect fill='%23faa296' x='70' y='10' width='11' height='11'/%3E%3Crect fill='%23faa595' x='60' y='20' width='11' height='11'/%3E%3Crect fill='%23fba895' x='50' y='30' width='11' height='11'/%3E%3Crect fill='%23fbab94' x='40' y='40' width='11' height='11'/%3E%3Crect fill='%23fbae94' x='30' y='50' width='11' height='11'/%3E%3Crect fill='%23fbb194' x='90' width='11' height='11'/%3E%3Crect fill='%23fbb494' x='80' y='10' width='11' height='11'/%3E%3Crect fill='%23fbb795' x='70' y='20' width='11' height='11'/%3E%3Crect fill='%23fbbb95' x='60' y='30' width='11' height='11'/%3E%3Crect fill='%23fabe96' x='50' y='40' width='11' height='11'/%3E%3Crect fill='%23fac197' x='40' y='50' width='11' height='11'/%3E%3Crect fill='%23f9c498' x='90' y='10' width='11' height='11'/%3E%3Crect fill='%23f9c799' x='80' y='20' width='11' height='11'/%3E%3Crect fill='%23f8ca9b' x='70' y='30' width='11' height='11'/%3E%3Crect fill='%23f7cd9d' x='60' y='40' width='11' height='11'/%3E%3Crect fill='%23f6d19f' x='50' y='50' width='11' height='11'/%3E%3Crect fill='%23f6d4a1' x='90' y='20' width='11' height='11'/%3E%3Crect fill='%23f5d7a3' x='80' y='30' width='11' height='11'/%3E%3Crect fill='%23f4daa5' x='70' y='40' width='11' height='11'/%3E%3Crect fill='%23f3dda8' x='60' y='50' width='11' height='11'/%3E%3Crect fill='%23f2e0ab' x='90' y='30' width='11' height='11'/%3E%3Crect fill='%23f1e3ae' x='80' y='40' width='11' height='11'/%3E%3Crect fill='%23f0e5b1' x='70' y='50' width='11' height='11'/%3E%3Crect fill='%23f0e8b4' x='90' y='40' width='11' height='11'/%3E%3Crect fill='%23efebb7' x='80' y='50' width='11' height='11'/%3E%3Crect fill='%23EEB' x='90' y='50' width='11' height='11'/%3E%3C/g%3E%3C/svg%3E");
+  background-attachment: fixed;
+  background-size: cover;
+}
+
+h1 {
+  position: absolute;
+  left: 33%;
+}
+
+h3 {
+  color: rgba(44, 58, 71,1.0);
+}
+
+#container {
+  position: absolute;
+  left: 20%;
+  width: 66%;
+  top: 5em;
 }
 
 .accordion {
-  background-color: aqua;
+  background-color: rgba(253, 114, 114, 0.8);
+  color: white;
   border: none;
   outline: none;
   text-align: left;
@@ -14,11 +36,11 @@ html {
 }
 
 .active, .accordion:hover {
-  background-color: darkblue;
+  background-color: rgba(253, 114, 114, 1);
 }
 
 .body {
-  background-color: aquamarine;
+  background-color: #2d2d2d;
   padding: 1em;
   display: none;
   overflow: hidden;
