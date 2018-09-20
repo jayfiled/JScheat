@@ -2,11 +2,25 @@ html {
   font-family: -apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Oxygen,Ubuntu,Cantarell,Fira Sans,Droid Sans,Helvetica Neue,sans-serif;
 }
 
+.accordion {
+  background-color: aqua;
+  border: none;
+  outline: none;
+  text-align: left;
+  width: 100%;
+  padding: 1em;
+  cursor: pointer;
+  transition: 0.4s;
+}
 
-#accordion .acc-body {
+.active, .accordion:hover {
+  background-color: darkblue;
+}
+
+.body {
+  background-color: aquamarine;
+  padding: 1em;
   display: none;
+  overflow: hidden;
 }
 
-#accordion .active .body {
-  display: block;
-}
