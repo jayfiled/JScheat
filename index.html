@@ -1258,7 +1258,496 @@
   <div class="body">
       <pre>
           <code class="lang-javascript">
-            
+      //- Intro
+
+          // Learn about all different types of operations you can do on Arrays;
+              // Adding new elements
+                  // Finding Elements
+                      // Removing Elements
+                          // Splitting arrays
+                              // Combining arrays
+
+
+            // Adding Elements:
+
+                const numbers = [3, 4];
+
+                // numbers = []; // watch out for reassinging constant variables - you'll get an error but you can add and remove elements
+
+                // End
+
+                numbers.push(5,6);
+
+                console.log(numbers); // returns [3, 4, 5, 6]
+
+                // Beginning
+
+                numbers.unshift(1,2);
+
+                console.log(numbers); // returns [1, 2, 3, 4, 5, 6]
+
+                // Middle
+                    // splice - you can go to a given position and add new elements or remove new elements
+                numbers.splice(2, 0, 'a', 'b') // param1 = start position (starts BEFORE the specified index element), param 2 = how many elememts
+                // to delete, param 3 = the items you want to add.
+
+                console.log(numbers); // returns [1, 2, 'a', 'b', 3, 4, 5, 6]
+
+
+
+            // Finding Elements
+                    // Differs based on if you are finding primitive types, or reference types.
+
+                // Finding Primitive types:
+
+                const numbers = [1, 2, 3, 1, 4];
+
+                console.log(numbers.indexOf(1)); // returns the index of the argument.  -1 if it doesn't exist. '1' will be -1
+
+                console.log(numbers.lastIndexOf(1)); // returns the index of the last element that matches the argument, i.e. 3
+
+                // does it exist, true or false?
+
+                console.log(numbers.indexOf(1) ==! -1); // returns true
+
+                    // a newer, better way:
+                console.log(numbers.includes(1)); // returns true if the given element exists in the array
+
+                // all have a second parameter, which is optional which is the starting index, i.e:
+
+                console.log(indexOf(1, 2)); // returns 3 which is the only element that matches the argument when we start the 
+                                            // array at the 2nd index
+
+                // Finding reference types:                          
+                    // Slightly different that using primitive types
+                const courses = [
+                    {id: 1, name: 'a'},
+                    {id: 2, name: 'b'}
+                ];
+
+                console.log(courses.includes({id: 1, name: 'a'})); // false
+                // because the object you are passing have the same values but it has a different reference, it has a different locations
+                // in memory, two different unique IDs.
+
+                // so we use the find method - use MSDN if the description in your IDE is too complicated
+
+                const array1 = [5, 12, 8, 130, 44];
+
+                const found = array1.find(function(element) { // as an agrument, we pass a function - predicate or 'call-back' function 
+                    return element > 10;  // the function takes a parameter which is an element in the above array1 array.
+                }); // return a boolean
+
+                // What happens: the function is executed using once on the first element in the array, i.e. number 5 is passed
+                // as the element, 5 is not greater than 10, so it won't be added to the 'found' array, and the next element is checked.
+                // 12 is checked and it meets the condition and returns true and then stops checking.
+
+                // undefined is returned if there are no elements that match.
+
+                console.log(found); // output: 12
+
+                //trying one more time on our course array:
+
+                const courses = [
+                    {id: 1, name: 'a'},
+                    {id: 2, name: 'b'}
+                ];
+
+                console.log(courses.find(function(course) {
+                    return course.name === 'a';
+                })); // outputs the full course object
+
+                // if it can't find, then it outputs 'undefined'
+
+                // if you want the index of a reference type:
+
+                console.log(courses.findIndex(function(course) {
+                    return course.name === 'a';
+                })); // outputs 0 but -1 if it can't find it.
+
+
+                // Arrow Functions
+
+                // ES6 way to make the above code cleaner with arrow functions
+
+                // Whenever you want to pass a callback function or as an argument to a different method:
+
+                // 1. remove the word 'function'
+                // 2. If it has a single parameter, remove the parenthesis
+                // 3. If you don't have any parameters, you need to pass an empty parenthesis
+                // 4. If your function is a single line of code and it is returning a value, remove the return keyword and curly
+                // braces, put it all on one line.
+
+
+                console.log(courses.findIndex(course => course.name === 'a'));
+
+            // Removing Elements from an Array
+
+
+                const numbers = [1, 2, 3, 4];
+
+                // End
+                const last = numbers.pop();// Removes the last element in the array and returns it, so save it to a constant
+                console.log(numbers); // Outputs: [1, 2, 3]
+                console.log(last); // Outputs: 4
+
+
+                // Beginning
+                const first = numbers.shift(); // Like pop, but it removes the first element and returns it
+                console.log(numbers); // Outputs: [2, 3, 4]
+                console.log(last); // Outputs 1
+
+                // Middle
+                numbers.splice(2, 2); // first argument is the index item of the element you want to delete, the next argument is
+                console.log(numbers);    // the amount of items you want to remove
+                        // Outputs: [1, 2] 
+
+
+
+            // Emptying an array - remove all elements
+
+                    
+                    let numbers = [1, 2, 3, 4];
+                    let another = numbers; // for the garbage collection example below:
+
+                  // Solution 1
+
+                numbers = []; // This will reinitialize the array to an empty array - it doesn't *empty* the array.
+
+                console.log(numbers); // Outputs []
+                // The issue with this is that if you have another variable referencing the numbers variable, it will still reference 
+                // the original numbers array.  Because it is still sitting in memory, and will so until the JS garbage removal 
+                // takes place, you can prove this by declaring another variable and pointing it to numbers, i.e.
+
+                console.log(another); // Outputs [1, 2, 3, 4]
+
+                  // Solution 2
+
+                numbers.length = 0; // Will truncate the existing numbers array to 0
+                console.log(numbers); // Outputs: []
+                console.log(another); // Outputs: []
+
+                  // Solution 3
+
+                numbers.splice(0, numbers.length);
+                // removes the elements starting at the 0th index and removes the same amount of elements that are in the array
+
+                  // Solution 4
+
+
+                while (numbers.length > 0) {
+                    numbers.pop();
+                }
+
+                console.log(numbers); // Outputs: []
+                console.log(another); // Outputs: []
+                // Not ideal as it needs to loop over every element in the array and will have a high performace cost the larger
+                // the array
+
+                // Takeaway: Solution 1 is less noisy than the rest, but solution 2 is preferred as you don't have  to worry
+                // about re-assigning variables
+
+            // Combining and Slicing arrays
+
+                    // Combine
+                    const first = [1, 2, 3];
+                    const second = [4, 5, 6];
+
+                    const combined = first.concat(second); // Use concat to combine arrays, pass the second array in as an argument
+                    console.log(combined); // to return them together
+
+                    // Slice 
+                // The slice() method selects the elements starting at the given start argument
+                // and ends at, but does not include, the given end argument.
+
+                    const slice = combined.slice(2, 4);
+                    console.log(combined); // Outputs [3, 4]
+                    console.log(slice);
+
+                    // You can also use it like:
+                    combined.slice(2); // Outputs: [3, 4, 5, 6] (everything after and including the first argument's indexed item)
+                    combined.slice(); // Outputs the original array (copies it)
+
+                // Extra info:
+                    // When you combine and slice arrays, if they contain primitive types, they are copied
+                    // If they contain objects, then the *references* are copied
+                        // meaning the elements in the input array will reference the same object as the output (the returned) array
+
+                    //i.e.
+
+                    const first = [{ id: 1 }]; // Add a reference type
+                    const second = [4, 5, 6];
+
+                    const combined = first.concat(second); // Here the first array with an object with ID: 1 is combined with second
+                    console.log(combined); // Check what 'combined' outputs: [{id: 1}, 4, 5, 6]
+
+                    combined[0].id = 10; // Change the ID value in the object within the combine array
+                    //first[0].id = 10;
+                    console.log(first); // Because the object in the combine array is referencing the one in 'first', changing one
+                                        // will change the other.  Single source.
+                
+                    // The spread operator ... 
+                        // ES6 way to do the above combine and slice
+
+                    const first = [1, 2, 3];
+                    const second = [4, 5, 6];
+
+                // const combined = first.concat(second);  
+                    // spread version
+                const combined = [ ...first, ...second]; // you declare a new array and add the individual elements of the first
+                                                        // and second array
+
+                // .. you can also add elements in between and at the end
+                    [ ...first, 'a', ...second, 'b'];
+
+                // with slice you can copy the array like: const copy = combined.slice();
+                // with the spread operator:
+                const copy = [...combined];
+
+            // Iterating an array
+
+                 // Use array loop - for-of
+
+                    const numbers = [1, 2, 3];
+
+                for (let number of numbers) // for each iteration, 'number' will be set to one number in the array 'numbers'
+                console.log(number); // outputs 1, 2, 3
+
+                // A similar way to do this is with the array method 'forEach'
+
+                numbers.forEach(function(number) { // each element in the array 'numbers' will be passed as an argument to the callback
+                    console.log(number);            // function on each iteration
+                });
+
+                // forEach refactored:
+
+                numbers.forEach(number => console.log(number));
+
+                    // tip - forEach's callback function, can optionally take a second parameter, which is the index of  the element
+                    // i.e.
+                numbers.forEach((number, index) => console.log(index, number)); // Outputs 0 1, 1 2, 2 3
+
+                // note - you don't get the index with the 'for-of' loop - you need to use the 'for-in' loop for that.
+
+
+            // Joining Arrays
+
+                const numbers = [1, 2, 3];
+
+                const joined = numbers.join(); // you can optionally pass a string, and it will be used as a seperator.  It also returns a string.
+                console.log(joined); // Outputs: 1,2,3
+
+                // .join goes hand in hand with .split (on a string object)
+
+                const message = 'This is my first message';
+
+                const parts = message.split(' '); // returns an array.
+                console.log(parts); // Outputs [0: "this" 1: 'is] .. etc
+
+                // now use the join method to combine the elements using a seperator
+
+                const combined = parts.join('-');
+                console.log(combined);
+
+                // Useful when creating a URL slug.  This is when, for example an article is posted on a website and the title's 
+                // white space is removed and dashes are added instead to use in the URL. i.e. 'My best mate' turns into: 
+                // www.coolsite.com.au/my-best-mate.html
+
+            // Sorting Arrays
+
+                    const numbers = [2, 3, 1];
+                        // Nice and easy when you have numbers and strings in an array.
+                    numbers.sort();
+                    console.log(numbers); // Outputs [1, 2, 3]
+
+                    numbers.reverse();
+                    console.log(numbers); // Outputs [3, 2, 1]
+
+                        // A little trickier when using objects
+                    const courses = [
+                        {id: 1, name: 'Node.js'},
+                        {id: 2, name: 'JavaScript'}
+                    ];
+                    courses.sort(); 
+                    console.log(courses)// Output is identical to the original array - it doesn't work.
+
+                // to fix this, we can pass an optional function to the sort method as an argument.  This is used for comparison. 
+                // In this case if we call the sort method, the method gets two objects and compares them.
+                // If they are in the right order, it will skip to the next elements, otherwise it will re-arrange them
+
+                courses.sort(function(a, b) {
+                    // if a < b => -1  (return -1) - meaning it is in the right order
+                    // if a > b => 1 // if this returns it switches them
+                    // if a === b => 0
+
+                    if (a.name < b.name) return -1; // no need to use the 'Else-if' because if the first statement is true, we will
+                    if (a.name > b.name) return 1; // jump out of the function
+                    return 0;
+                });
+
+                console.log(courses); // Output: the courses array with the javascript object displaying first
+
+                // However, the sort() method won't work if, for example the 'J' in javaScript is lower-case.
+                // this is because the uppercase N in node, is 78 on the ASCII table, and lower case j is 106. 78 < 106, so it returns 1
+                // in our function.
+
+                // How to solve?
+                // A. Exclude case-sensitivity when comparing the names in our callback function
+
+                courses.sort(function(a, b) {
+                    // if a < b => -1  (return -1) - meaning it is in the right order
+                    // if a > b => 1 // if this returns it switches them
+                    // if a === b => 0
+                    const nameA = a.name.toUpperCase(); // or toLowerCase();
+                    const nameB = b.name.toUpperCase(); // or toLowerCase();
+
+                    if (nameA < nameB) return -1; // no need to use the 'Else-if' because if the first statement is true, we will
+                    if (nameA > nameB) return 1; // jump out of the function
+                    return 0;
+                });
+
+            // Testing the elements of an Array
+                        // every() and some() --- new JS, so not supported natively in old browsers ---
+
+                const numbers = [1, 2, 3];
+                // .every() checks every element against an expression to see if ALL of the elements meet a criteria
+                const allPositive = numbers.every(function(value) {
+                    return value >= 0; // if this expression returns true, the every method will return a boolean, otherwise false
+                });     // it will also terminate on the first element that doesn't match the criteria in the expression.
+
+                // .some() checks every element to see if at least one element matches a given criteria.
+                const atLeastOnePositive = numbers.some(function(value) {
+                    return value >= 0; // same deal, as soon as it finds an element that matches the expression, it returns true
+                });
+
+
+
+            // Filtering an Array
+                        // Loops over each element in the array and performs a function on each element and returns a new array
+                const numbers = [1, -1, 2, 3];
+
+                const filtered = numbers.filter(function(value) {
+                    return value >= 0;
+                });
+
+                console.log(filtered);
+
+                // This expression is a good target for an arrow function.
+
+                const filtered = numbers.filter(n => n >= 0 );
+
+                // Possible exercise?
+
+                // Most likely in a real world scenario, you'll use an array of objects.  For example an array with restaurants,
+                // and they all have their opening hours as a property.
+                // You can then filter the restaurants by whether they are open now or not.
+
+
+            // Mapping an Array
+                    // You can map each element in an array to something else.
+
+                    // Contstruct some HTML markup using the elements in this array: (map to strings)
+
+                    const numbers = [1, -1, 2, 3];
+
+                    const filtered = numbers.filter(n => n >= 0);
+
+                    const items = filtered.map(n => '<li>' + n + '</li>'); // Replace the element passed in as an argument to the 
+                                                                            // callback function with what the cb function returns
+
+                    const html = '<ul>' + items.join('') + '</ul>'; // join the array with nothing, and return it.  
+                                                                    // Changing the array to a string & concatenate some <ul> tags
+                                                                    // as strings.
+
+                    console.log(html); // Outputs: <ul><li>1</li><li>2</li><li>3</li></ul>
+                
+                        // (map to objects)
+                    const numbers = [1, -1, 2, 3];
+
+                    const filtered = numbers.filter(n => n >= 0);
+
+                    // const items = filtered.map(n => {
+                    //     const obj = { value: n };
+                    //     return obj;
+                    // }); // returns an array of object with a values mapped from the filtered array          
+
+                    // TIP: you can refactor the above callback function, but there is a trick when returning objects
+
+                    const items = filtered.map(n => ({ value: n }) );
+                                // only have a single line of code and returning one value
+                                // so you don't need the const, return keyword or curly braces
+                                // BUT, here's the TIP, you need to wrap the object's curly braces in parenthesis
+                                // otherwise the JS engine will parse the object's curly braces as a code block & return undefined.
+
+                    console.log(items);    
+
+                        // TIP: these methods (filter, map, join etc) return arrays, so that means we can chain them together without
+                        // having to store them to constants. So the above code would look like this:
+
+                        const numbers = [1, -1, 2, 3];
+
+                        // call a filter method, that method returns a result, then we immediately call another method on that result
+                        const items = numbers
+                            .filter(n => n >= 0)
+                            .map(n => ({ value: n}) ); // best convention is to start the chain on a new line
+
+                        console.log(items);
+
+                        // Now you can go nuts chaining methods, because whatever method returns an array, you can chain another
+                        // method to, like: 
+                        const numbers = [1, -1, 2, 3];
+
+                        const items = numbers
+                        .filter(n => n >= 0)  // returns: [1, 2, 3]
+                        .map(n => ({ value: n}) ) // returns an array with 3 objects
+                        .filter(obj => obj.value > 1) // returns an array with 2 objects (removes the one with value: 1)
+                        .map(obj => obj.value); // returns [2, 3]
+                    console.log(items);
+
+              // Reducing an array
+
+                    const numbers = [1, -1, 2, 3];
+
+                    // Previously we would calculate the sum of all the numbers in this array like this:
+
+                    // let sum = 0;
+                    // for (let n of numbers)
+                    //     sum += n;
+
+                    //     console.log(sum); // Outputs: 5
+
+                    // To do  this using the reduce() method - it takes two arguments
+
+                // What happens with the reduce method, round by round (a = accumulator, c = currentValue)
+
+                // round 1 -  a = 0, c = 1 => a = 1
+                // round 2 -  a = 1, c = -1 => a = 0
+                // round 3 -  a = 0, c = 2 => a = 2
+                // round 4 -  a = 2, c = 3 => a = 5
+
+                  const sum = numbers.reduce((accumulator, currentValue) => {
+                        return accumulator + currentValue;
+                    }, 0); // the second argument to the .reduce() method, you pass the initial value you want the accumulator to be
+
+                    console.log(sum);
+
+                // The accumulator parameter is like the sum variable above.
+                // Each loop over the element in the array, the element will be the currentValue and it will be added to the accumulator.
+                // Returns a single value
+
+                    // Refactor!
+                        // Exclude the accumulator (it will then be set to the first element's value)
+                        // Remove the return keyword because we have a single line and we only return a value
+                        // Remove the curly braces and put everything on one line
+                    const numbers = [1, -1, 2, 3];
+
+                    const sum = numbers.reduce(
+                        (accumulator, currentValue) => accumulator + currentValue
+                    );
+
+                    console.log(sum);
+
+
+
           </code>
         </pre>
   </div>
@@ -1268,6 +1757,526 @@
       <pre>
           <code class="lang-javascript">
             
+//- Function declarations vs function expressions
+
+  // Function declaration
+      function walk() {
+          console.log('Walk');
+      }
+
+  // Function Expression
+          // Functions are objects, so setting the run variable is similar to 
+          // setting the run variable to an object.
+      // If the function doesn't have a name (like below), it is an anonymous function expression
+      // If it has a name, i.e. function run() {}; - it is a Named Function Expression
+      let run = function() {
+          console.log('run')
+      }; // because we are declaring a variable or constant (run), we terminate with a semi-colon
+      // Now run, *will reference* the anonymous function, and we can call the 
+      // anonymous run function, using this reference:
+      // run(); // the same way we call a function in JavaScript
+      // if you declare another variable and set it to the variable 'run', it will reference the same 
+      // anonymous function (which is one object) in memory. 
+      // so move(); works
+
+
+  // Hoisting
+
+      // The key difference between function declarations and expressions is that you can call the
+      // declaration before it is defined, i.e.
+
+      walk();
+      function walk() {
+          console.log('walk');
+      } // Outputs: Walk
+
+      // compared to:
+
+      run()
+      const run = function() {
+      console.log(run);
+      }; // Outputs: Uncaught ReferenceError: run is not defined at index.js:2663
+
+      // Explanation: 
+      // It is like using a variable or constant before it is defined, i.e:
+          console.log(x);
+          let x = 1; // Outputs: Uncaught ReferenceError: x is not defined at index.js:2671
+
+      // This is because the JS engine, when it executes the code, it moves all the function
+      // declarations to the top (of the file), so the code will actually look like this at runtime:
+      function walk() {
+          console.log('walk');
+      }
+      walk();
+      // This process is called 'hoisting'
+
+  // Arguments
+
+      // Arguments are dynamic, like variables, objects etc; you can reinitialize them, change their type, etc.
+      // For example, in JS, even if your function takes two parameters, you can pass it one argument and it won't error
+      // but you will get unexpected results. i.e:
+
+      function sum(a, b) {
+      return a + b;
+      }
+
+      console.log(sum(1)); // Output: NaN - the 'b' parameter will be 'undefined' - 1 + undefined => NaN
+
+      // Similarly, if you pass more than one argument, in the above's case, only the first
+      // two arguments will be passed.
+      console.log(sum(1, 2, 3, 4, 5)); // Outputs 3.
+
+      // However, to accomodate this, JavaScript functions have a special object called 
+      // *arguments* - which looks like an array, and it's key value pairs are all the values 
+      // passed in as arguments and their index. It also has properties: 'callee', length & symbol.
+
+
+      function sum(a, b) {
+      console.log(arguments)
+      return a + b;
+      }
+
+      console.log(sum(1, 2, 3, 4, 5, 6)); // Logs the arguments object and also the result of a + b.
+
+
+      // You can work with this arguments object.  The object properties say that this object is iterable, so
+      // you can use a for-of loop that you use for arrays. i.i:
+
+      function sum() { // You can remove the parameters because we are working with the arguments object
+      let total = 0;
+      for (let value of arguments)
+          total += value;
+      return total;
+
+      }
+
+      console.log(sum(1, 2, 3, 4, 5, 10));
+
+
+      // The rest operator - a better way to do the above.
+      // For funtions with a varying number of operators, use within the function's parameters, like: '...args'
+
+      function sum(...args) {
+          console.log(args);
+
+      }
+      console.log(sum(1, 2, 3, 4, 5)); // Outputs the arguments as an array. if you leave out the ..., it will just 
+                                  // print out the first argument, in this case: 1.
+      // Tip: So, now you can use array methods to use the args array, like reduce() etc so your code is cleaner and more
+      // elegant. i.e:
+
+      // Objective: Print the total of the arguments passed in.
+      function sum(...args) {
+      return args.reduce((a, b) => a + b);
+      }
+
+      console.log(sum(1, 2, 3, 4, 5, 10));
+
+      // Lets expand upon it's functionality
+      // Objective: Use this function to calculate the total amount of items in a shopping cart, with a discount factor.
+
+      function sum(discount, ...prices) {
+      const total = prices.reduce((a, b) => a + b)
+      return total * (1 - discount); // 90% of the total is a 10% discount :'D
+      }
+
+      console.log(sum(0.1, 20, 30));
+      // Note: the rest parameter must be the last parameter or you get uncaught syntax error
+
+
+      // Default Parameters
+      // When you want to supply a 'default' value to a parameter, where the value hasn't been specified in an argument
+      // i.e:
+
+      // The traditional way:
+      function interest(principal, rate, years) {
+          rate = rate || 3.5; // If rate has a value - if it is 'truthy', use that, or use 3.5.
+          years = years || 5; 
+          return principal * rate / 100 * years;
+      }
+
+      console.log(interest(10000)); // You can pass in all the arguments, or leave them out as we have defaults set in the func
+
+      // The ES6 (modern way)
+      // Set them within the parameter
+      function interest(principal, rate = 3.5, years = 5) {
+          return principal * rate / 100 * years;
+      }
+
+      console.log(interest(10000));
+      // the caveat:
+      // Once you define a default for a parameter, you need to define one for all the ones following, or the following happens:
+
+      function interest(principal, rate = 3.5, years) {
+          return principal * rate / 100 * years;
+      }
+
+      console.log(interest(10000)); // Outputs: NaN because the years parameter isn't set, so it is undefined.
+      // Even if you enter a second argument to interest(), the JS engine doesn't know if it should be used for 
+      // rate or years. So, console.log(10000, 5) will also be NaN
+      // Tip/Trick/bad practice: You can pass undefined as the second argument if you want, console.log(10000, undefined, 5)
+      // but if you use defaults in the params, then only set it on the last, or every parameter thereafter should
+      // also have defaults set. 
+
+
+      // Getters and Setters
+      // A special kind of method in objects
+
+      // The problem getter and setters solves:
+      // If we want to display someone's full name in our program, we'd get it from an object
+      // using the `${}` template literal syntax:
+      const person = {
+      firstName: 'Joel',
+      lastName: 'James'
+      };
+
+      console.log(`${person.firstName} ${person.lastName}`); // But we would have to repeat that every time we want to display
+      // the person's full name eveywhere in our application.
+
+      // TIP: If we structure our objects like this, we can improve the repetition:
+      // Define a method called fullName in the object, return the expression we used in the above console.log and whenever we need
+      // to use the persons full name, just reference the .fullName() method in the person object.
+
+      const person = {
+      firstName: 'Joel',
+      lastName: 'James',
+      //  function fullName() {};     // This is a way to do it, but in ES6, you can just use the function's name
+      fullName() {
+          return `${person.firstName} ${person.lastName}`;
+      }
+      };
+
+      console.log(person.fullName()); // Outputs: Joel James
+      // There is still a problem with this as we are only able to *read* the properties from the person object.
+      // In a proper application, we'd need to be able to change these properties. i.e:
+      person.fullName = 'Josh Jameson'; // wouldn't work in it's current state.
+      // AND ideally, we would like to be able to call the full name without using the method syntax, like:
+      console.log(person.fullName);
+
+      // Enter GETTERS and SETTERS !
+      // getters => access properties
+      // setters => change (mutate) them
+
+      const person = {
+      firstName: 'Joel',
+      lastName: 'James',
+      get fullName() { // write 'get' next to the method name
+          return `${person.firstName} ${person.lastName}`
+      },
+      set fullName(value) { // value will be whatever is on the right hand side of the assignment operator
+          // split the string, take the parts and set the firstName, lastName properties
+          const parts = value.split(' '); // returns an array
+          this.firstName = parts[0];
+          this.lastName = parts[1];
+      }
+      };
+
+      console.log(person.fullName); // Now we can access the fullName like a property
+
+      person.fullName = 'Josh Jameson';
+
+      console.log(person); // You'll see firstName and lastName properties will be updated
+      // you'll also see that fullName is (...), hover over and the tooltip will tell you that it is a getter method
+      // and to click to invoke.
+
+      // Error Handling
+      // The above is all well and good, but what if we entered an unexpected type into the person.fullName?
+      person.fullName = true; // Outputs error: Uncaught type exception - split is a method that belongs to strings. Also:
+      person.fullName = null; // Outputs TypeError: Cannot read property ... of null
+
+      // We need error handling
+      // Typically in situations like this, do error handing at the beginning of a function or method, called:
+      // **Defensive programming** - checking that the values coming in are valid, that they are in the right 
+      // format to execute our logic. i.e:
+
+      const person = {
+          firstName: 'Joel',
+          lastName: 'James',
+          get fullName() {
+              return `${person.firstName} ${person.lastName}`;
+          },
+          set fullName(value) {
+              if (typeof value !== 'string') // return; // This will return with no error, or
+              throw new Error('Value is not a string.'); // throw keyword, create a new Error object (Pascal-case signifies the constructor function)
+                  // if we throw an error, we need to catch it in the same place that called the exception
+
+              const parts = value.split(' ');
+      // Obviously, there are still ways for other errors to slip through, like if we pass an empty string (it's still a string)
+              if (parts.length !== 2) // you get an empty string as a firstName and undefined as a lastName.
+              throw new Error('Enter a first and last name'); // We can throw another exception:
+
+              this.firstName = parts[0];
+              this.lastName = parts[1];
+          }
+      }
+      try {
+      person.fullName = ''; // We need to 'throw' an exception. An Error object used with 'throw' is called an *Exception*
+      }
+      catch (e) { // the error parameter is the Error object we made in the setter function.
+      alert(e); // Outputs an alert pop-up in the browser. We can also: console.log(e); or display some text to the user
+      }
+
+      console.log(person);
+
+
+      // Local Vs Global Scope
+      // Let and Const variables can only be accessed in the block in which 
+      // they are defined.
+      // The below could be a function, conditional or loop code block 
+      {
+      const message = 'hi';
+      }
+
+      console.log(message); // Uncaught ReferenceError: message is not defined
+
+      // Same applies to code blocks within other code blocks like:
+
+      function start() {
+      const message = 'hi';
+
+      if (true) {
+          const another = 'bye';
+      }
+      console.log(another) // Outputs: Uncaught ReferenceError: another is not defined.
+      }
+
+      start();
+      // Which means things that look like duplicates, can actually be valid JS:
+
+      function start() {
+      const message = 'hi';
+      }
+
+      function stop() {
+      const message = 'bye';
+      }
+
+      start(); // Outputs: 'hi'
+
+      // Global scope
+          // Available everywhere
+              // But are overwritten by locally scoped variables with the same name
+      const color = 'red';
+
+      function start() {
+          const message = 'hi';
+          const color = 'blue';
+          console.log(color); // Outputs 'blue' because locally scoped variables have a higher
+      }                       // precedence.
+
+      function stop() {
+          const message = 'bye';
+      }
+
+      start();
+      // Takeaway: Don't declare const or variables in the global scope
+      // Because they can be overwritten in other functions and can cause bugs and issues.
+
+      // Let vs Var
+      // Problems with var and why you should avoid it.
+          // 1. Var - It's scope is not limited to the block in which it is defined - but the *function*
+          // in which it's defined.
+          // 2. When you declare a var variable, it global and attached to the window object.  Because there is 
+          // only one window object, if you work with a 3rd party library, it may have a var with the 
+          // same name as your var and it will cause a conflict.
+
+      let x = 0;
+      var y = 0;
+
+
+      function start() {
+      for (let i = 0; i < 5; i++) // the curly braces code block is still here, just not needed
+          console.log(i);
+
+      console.log(i); // Outputs: 0, 1, 2, 3, 4 from internal code block, then i is 5, but
+      };                  // outputs Uncaught ReferenceError: i is not defined.
+
+      // with var instead:
+
+      function start() {
+      for (var i = 0; i < 5; i++)
+          console.log(i)
+
+      console.log(i); // Outputs 1 - 4 from inside (loop) block, and 5 from external (function) block
+      }                   // because var is defined within the start() function, it is available even
+                      // if it is within a code block.
+      // This is a strange 'JavaScript' only feature.  Most of the other programming languages don't act like this
+
+      // Recap: 
+      // var => function-scoped
+      // ES6 (ES2015): let, const => block-scoped
+
+      // One more example:
+
+      function start() {
+      for (var i = 0; i < 5; i++) {
+          if (true) {
+              var color = 'red';
+          }
+      }
+      console.log(red); // Output's 'red' as var is scoped to the function.
+      }
+
+      // Other reason
+
+      var color = 'red'; // var attaches color to the window object.
+      let age = 30;
+
+      console.log(window.color); // Output: 'red'
+
+      // In the same regard as the var keyword, when you create a function, it is also attached to the window object
+      // you can call it by window.functionName() after you've declared it.
+
+      // This is bad practice and the way to seperate them is to ensapsulate them in modules 
+      function sayHi() {
+      console.log('hi');
+      }
+
+      // Takeaway: Avoid using the var keyword, because they are function scoped, not block scoped.
+
+      // The 'this' keyword
+
+      // Explanation
+      // This THIS keyword is referencing the object that executing the current function
+      // Methods are functions in an object
+      // 1. If the THIS keyword is within a method, the THIS keyword references that object itself
+      // 2. Else if the THIS keyword is within a function, then the THIS keyword references the global
+      // (window in browsers, global in Node) object
+      // For example:
+
+      const video = {
+      title: 'a',
+      play() {
+          console.log(this);
+      }
+      };
+
+      //video.play(); // Outputs: {title: 'a', play: f}
+
+      video.stop = function() {
+      console.log(this);
+      };
+
+      video.stop(); // Outputs: {title: 'a', play: f play(), stop: f () }
+
+      // Whereas, if you create a function outside the object:
+
+      function playVideo() {
+      console.log(this);
+      }
+
+      playVideo(); // You see the window object in the browser, or the global object in node
+
+      // if you use a constructor function:
+
+      function Video(title) {
+      this.title = title;
+      console.log(this);
+      }
+
+      const v = new Video('b'); // New opererator creates a new empty object in the background,
+                              //like {}, so this is referencing that new object
+
+      // One more example:
+
+      const video = {
+      title: 'a',
+      tags: ['a', 'b', 'c'],
+      showTags() {
+          this.tags.forEach(function(tag) {
+              console.log(this.title, tag);
+          });
+      }
+      };
+
+      // I want to display the title and then the tags:
+
+      video.showTags(); // Outputs: undefined 'a', undefined 'b', undefined 'c'
+      // The 'this' keyword is within a regular callback function, which is within a method.  A function is actually 
+      // a part of the window / global object, even when it is housed within a method as a part of an
+      // object. The global object is the one that is executing the anonymous function
+
+      // To solve this issue, there are a few options:
+
+      // 1. The foreach() method takes a second argument - thisArg?.  Where you can pass an object, and the THIS
+      // keyword will reference the object you've passed.  Because you are outside the callback function, you can pass
+      // 'this' as the object, and you will reference it within the callback function.
+      // Not all methods take an object as a second parameter to use, so
+      // 2, 3, 4 and option 5 in the next section
+
+
+      // Changing this
+
+      // 2. Inside the method, but outside the callback function define a constant before the foreach()
+      // method and call it 'this' - this solution isn't recommended - i.e: 
+
+      const video = {
+      title: 'a',
+      tags: ['a', 'b', 'c', 'd'],
+      showTags() {
+          const self = this; // some people call it 'that'
+          this.tags.forEach(function(tag) {
+              console.log(self.title, tag);
+          })
+      }
+      };
+
+      video.showTags()
+
+      // 3. apply() bind() and call() - these function-object methods, 'call', or return a new function for you and allow you to customize
+      // some default properties of that function-object by allowing you to pass in things you want
+      //  to replace the default properties with. i.e:
+
+      const func = function playVideo(a, b) {
+      console.log(this.name);
+      }.bind({name: 'Joel'});
+
+      func();
+
+
+      // The call method on the playVideo object (remember functions are objects), takes a parameter - an object - that you want the 
+      playVideo.call({ name: 'Joel' }, 1, 2); // THIS keyword to reference. You can also pass in arguments if the function
+                                          // you are calling has parameters.
+
+      playVideo.apply({ name: 'Joel' }, [1, 2]) // difference between the two is you need to pass the args as an array
+
+      const fn = playVideo.bind( {name: 'Joel' }) // This *doesn't* call the playVideo function.  It returns a new *function*
+                                      // and sets the THIS keyword to the object you pass in 
+      fn();
+      // or a cleaner way to write the fn() bind() combo is
+      playVideo.bind({ name: 'Joel' })();
+
+      // So the playVideo object can now be refactored using the bind() method:
+
+      const playVideo = {
+      title: 'a',
+      tags: ['a', 'b', 'c'],
+      showTags() {
+          this.tags.forEach(function(tag) {
+              console.log(this.title, tag);
+          }.bind(this));
+      }
+      };
+
+      playVideo.showTags();
+
+
+      // However, ECMA Script 6 provides an even better way to to change the THIS keyword - using fat arrow functions.
+      // When you use a fat arrow function, it automatically changes the reference of THIS, to *inherit* the THIS value
+      // from the containing function.
+      // the playVideo object refactored:
+
+      const playVideo = {
+      title: 'a',
+      tags: ['a', 'b', 'c'],
+      showTags() {
+          this.tags.forEach(tag => { // fat arrow inherits the THIS value from it's parent container - the playVideo object
+              console.log(this.title, tag);
+          })
+      }
+      };
+
+playVideo.showTags(); // Outputs: a a, a b, a c
           </code>
         </pre>
   </div>
@@ -1276,7 +2285,28 @@
   <div class="body">
       <pre>
           <code class="lang-javascript">
-            
+//- Operators
+    // Exercise 1
+
+    /* Swap the variables so they print 'blue' and 'red' to the console.*/
+
+let a = 'red';
+let b = 'blue';
+
+            // Answers in the answer section
+
+//- Control Flow
+    // Exercise 1.a
+
+    /* Display all odd numbers between 1 and including 5*/
+
+    // Exercise 1.b
+
+    /* Reverse the above - display numbers between and including 1*/
+
+    
+
+
           </code>
         </pre>
   </div>
@@ -1285,7 +2315,18 @@
   <div class="body">
       <pre>
           <code class="lang-javascript">
-            
+            // *** Exercise *** // Swap the variables so they print 'blue' and 'red' to the console.
+//- Operators
+    // Exercise 1
+
+        console.log(a);
+        console.log(b);
+
+//- Control Flow
+    // Exercise 1
+
+
+
           </code>
         </pre>
   </div>
