@@ -8,10 +8,7 @@ for (let i = 0; i < accordion.length; i++) {
         console.log(this.nextElementSibling);
         
         if (body.style.display === 'block') {
-        body.style.display = 'none';
-    }
-        else body.style.display = 'block';
-
-
+            body.style.display = 'none';
+        } else body.style.display = 'block';
     })
 }

@@ -24,7 +24,7 @@ h3 {
 }
 
 .accordion {
-  background-color: rgba(253, 114, 114, 0.8);
+  background-color: rgba(253, 114, 114, 1);
   color: white;
   border: none;
   outline: none;
@@ -36,7 +36,7 @@ h3 {
 }
 
 .active, .accordion:hover {
-  background-color: rgba(253, 114, 114, 1);
+  background-color: rgba(255, 130, 114, 1);
 }
 
 .body {
