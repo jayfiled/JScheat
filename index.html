@@ -2380,6 +2380,42 @@ let b = 'blue';
 
         const marks = [50, 40, 60, 90, 70, 70, 80];
 
+    // Exercise 11 - Show stars
+
+        /* Make a function that accepts a parameter and based on the number, the console will
+        display that many rows with the equivalent amount of start per row.
+        i.e showStars(3); // outputs : 
+        *
+        **
+        ***
+
+        */ 
+
+    // Exercise 12 - Show primes
+
+        // Create a function that displays all the prime numbers
+        // up until a given limit (the argument)
+
+    // Explanation:
+        // Primes (whose factors are only 1 and itself)
+        // Composites
+
+            // 12 = 1, 2, 3, 4, 6, 12 - are it's factors.
+            // It can be divided by its factors without having anything left over
+            // so, 12 is a COMPOSITE number
+
+            // 11 = 1, 11 // Prime numbers.  Can only be divided by 1 and itself without
+            // 13 = 1, 13 // having any leftovers
+
+        // notes:
+            // create a loop to check each number up until the limit
+            // each number needs to be checked against a set of rules to find out if it is composite or prime
+
+            // make a rule for a composite number
+                // number divided by every incremental number and not have a leftover e.g. limit = 12 (limit / i) % limit === 0
+            // make a rule for prime numbers
+            // check each number against a rule; if it is a prime number without being a composite number, log it.
+
           </code>
         </pre>
   </div>
@@ -2696,6 +2732,40 @@ let b = 'blue';
             }
 
             console.log(calculateGrade(array));
+        
+        // Exercise 11 - Show stars
+            
+            // Solution
+
+            function showStars(rows) {
+                for (let row = 1; row <= rows; row++) { // a loop to make a given amount of rows
+                    
+                                let pattern = ''; 
+        
+                                for (let i = 0; i < row; i++) { // a loop to increment the stars per row
+                                    pattern += '*';
+                                }
+        
+                            console.log(pattern);
+                }
+            }
+    
+        showStars(5);
+
+    // Exercise 12 - Show Primes
+    
+        // Solution
+            
+            function showPrimes(limit) {
+                for (let i = 2; i <= limit; i++) {
+                    for (let l = i + 1; l <= i; l++ )
+                    if ((limit / i) % limit === 0) console.log(i);
+                }
+            }
+        
+            showPrimes(12);
+
+
 
 
 
