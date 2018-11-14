@@ -5,7 +5,6 @@ for (let i = 0; i < accordion.length; i++) {
         this.classList.toggle('active');
 
         let body = this.nextElementSibling;
-        console.dir(body);
         
         if (body.style.display === 'block') {
             body.style.display = 'none';
