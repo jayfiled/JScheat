@@ -2422,7 +2422,7 @@ let b = 'blue';
         a. a factory function and then
         b. a constructor function  */
 
-    // Exercise 14 - Object Equality
+    // Exercise 15 - Object Equality
 
         /* Use the constructor function you used in the previous exercise to create two address objects
         Create two functions to check to see if the objects passed in are equal
@@ -2447,6 +2447,37 @@ let b = 'blue';
         function areSame(address1, address2) {
             
         }
+
+    // Exercise 16 - Blog post
+        /* Create a blog post object with these properties:
+        Use object literal syntax to create and initialize a blog post.
+
+        // title
+        // body
+        // author
+        // views
+        // comments 
+        //      (author, body)
+        //      (author, body)
+        // isLive
+
+        */
+
+    // Exercise 17 - New blog post
+
+        /* Use a constructor function to create a blog post object
+        Imagine you are building a blogging engine, the user is drafting a post, but they have not yet published it
+        Build what you think the constructor function should look like. */
+
+    // Exercise 18 - Price filter
+
+        // Think of the price range selector on a site like yelp.  Think of the properties an object like this would have
+        // there are 3 price range selectors - one with a single $, one with two $$ up to three $ signs.
+        // When you click one, you are shown all the restaurants whose cost of food
+        // falls into that price range.
+
+        // Create an array of objects.  Each object is called a 'Price Range object' 
+
 
           </code>
         </pre>
@@ -2884,38 +2915,132 @@ let b = 'blue';
 
     // Solution 2
 
-    function ShowAddress(streetNumber, streetName, city, postCode) {
-        this.streetNumber = streetNumber,
-        this.streetName = streetName,
-        this.city = city,
-        this.postCode = postCode
-    }
+        function ShowAddress(streetNumber, streetName, city, postCode) {
+            this.streetNumber = streetNumber,
+            this.streetName = streetName,
+            this.city = city,
+            this.postCode = postCode
+        }
+        
+        let address1 = new ShowAddress('a', 'b', 'c', 'd');
+        let address2 = new ShowAddress('a', 'b', 'c', 'd');
+        let address3 = address1;
+        
+        function areEqual(address1, address2) {
+            return address1.streetNumber === address2.streetNumber &&
+            address1.streetName === address2.streetName &&
+            address1.city === address2.city &&
+            address1.postCode === address2.postCode;
+        }
+        
+        console.log(areEqual(address1, address2)); // returns true as the values are the same
+        
+        function areSame(address1, address2) {
+            return address1 === address2;
+        }
+        
+        console.log(areSame(address1, address2)); // returns false as they are referencing different objects in memory
+        
+        console.log(areSame(address1, address3)); // returns true as address3 is referencing the same object in memory
     
-    let address1 = new ShowAddress('a', 'b', 'c', 'd');
-    let address2 = new ShowAddress('a', 'b', 'c', 'd');
-    let address3 = address1;
-    
-    function areEqual(address1, address2) {
-        return address1.streetNumber === address2.streetNumber &&
-        address1.streetName === address2.streetName &&
-        address1.city === address2.city &&
-        address1.postCode === address2.postCode;
-    }
-    
-    console.log(areEqual(address1, address2)); // returns true as the values are the same
-    
-    function areSame(address1, address2) {
-        return address1 === address2;
-    }
-    
-    console.log(areSame(address1, address2)); // returns false as they are referencing different objects in memory
-    
-    console.log(areSame(address1, address3)); // returns true as address3 is referencing the same object in memory
-    
-    // Takeaway - the instructions should have said to check that the VALUEs of the properties are the same,
-    // not the properties.  I read that I should have checked the property names.. i.e. the 'keys'
-    
+    // Exercise 16 - Blog post
 
+        // Solution
+
+        let blogPost = {
+            title: 'Feeling good',
+            body: 'Lorem Ipsum',
+            author: 'Mr Miyagi',
+            views: 10,
+            comments: [
+                {author: 'Mr Kid', body: 'Ipsum Lorem'},
+                {author: 'Mr Schwartznegger', body: 'You\'ll be back!'}
+            ],
+            isLive: true
+        };
+        
+        console.log(blogPost);
+    
+    // Exercise 17 - New blog post
+
+        // Solution 1
+
+        function BlogPost(title, body, author, views, comments, isLive) {
+            this.title = title,
+            this.body = body,
+            this.author = author,
+            this.views = views,
+            this.comments = comments,
+            this.isLive = isLive
+        }
+
+        blogPost1 = new BlogPost('dot net', 'dev environment, boo', 'Joel', 10, [
+            {name: 'Jim', body: 'I hear ya'},
+            {name: 'Rob', body: 'I believe ya'}
+        ], false);
+
+        // Solution 2
+
+        function Post(title, body, author) { //no need for views, comments or isLive as they are all initialized to default values
+            this.title = title;
+            this.body = body;
+            this.views = 0;
+            this.comments = [];
+            this.isLive = false;
+        }
+
+        let post = new Post('a', 'b', 'c');
+
+        console.log(post);
+
+        // the fewer parameters the better
+
+    // Exercise 18 - Price filter
+
+        // Solution 1
+
+        const priceRangeArr = [
+            {
+                name: 'cheapest',
+                priceMin: 0,
+                priceMax: 25,
+                onClick: function() {
+                    //send the minimum and maximum values to the search function to display relevant results
+                }
+            },
+            {
+                name: 'medium',
+                priceMin: 26,
+                priceMax: 36,
+                onClick: function() {
+                    //send the minimum and maximum values to the search function to display relevant results
+                }
+            },
+            {
+                name: 'expensive',
+                priceMin: 37,
+                priceMax: 100,
+                onClick: function() {
+                    //send the minimum and maximum values to the search function to display relevant results
+                }
+            }
+        ];
+        
+        // Solution 2
+        
+        let priceRanges = [
+            { label: '$', tooltip: 'Cheap', minPerPerson: 0, maxPerPerson: 10 },
+            { label: '$$', tooltip: 'Moderate', minPerPerson: 11, maxPerPerson: 25 },
+            { label: '$$$', tooltip: 'Expensive', minPerPerson: 26, maxPerPerson: 50 }
+        ];
+        
+        // The min and max are used to filter out the restaurant objects which have an average between the min and max, like:
+        
+        let restaurants = [
+            { averagePerPerson: 5 }
+        ];
+
+        
 
           </code>
         </pre>
