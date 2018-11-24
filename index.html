@@ -1257,7 +1257,7 @@
   <button class="accordion"><h3>Arrays</h3></button>
   <div class="body">
       <pre>
-          <code class="lang-javascript">
+          <code class="lang-javascript lang-markup">
       //- Intro
 
           // Learn about all different types of operations you can do on Arrays;
@@ -1645,20 +1645,20 @@
             // Mapping an Array
                     // You can map each element in an array to something else.
 
-                    // Contstruct some HTML markup using the elements in this array: (map to strings)
+                    // Construct some HTML markup using the elements in this array: (map to strings)
 
                     const numbers = [1, -1, 2, 3];
 
                     const filtered = numbers.filter(n => n >= 0);
 
-                    const items = filtered.map(n => '<li>' + n + '</li>'); // Replace the element passed in as an argument to the 
+                    const items = filtered.map(n => '&lt;li>' + n + '&lt;/li>'); // Replace the element passed in as an argument to the 
                                                                             // callback function with what the cb function returns
 
-                    const html = '<ul>' + items.join('') + '</ul>'; // join the array with nothing, and return it.  
+                    const html = '&lt;ul>' + items.join('') + '&lt;/ul>'; // join the array with nothing, and return it.  
                                                                     // Changing the array to a string & concatenate some <ul> tags
                                                                     // as strings.
 
-                    console.log(html); // Outputs: <ul><li>1</li><li>2</li><li>3</li></ul>
+                    console.log(html); // Outputs: &lt;ul>&lt;li>1&lt;/li>&lt;li>2&lt;/li>&lt;li>3&lt;/li>&lt;</ul>
                 
                         // (map to objects)
                     const numbers = [1, -1, 2, 3];
